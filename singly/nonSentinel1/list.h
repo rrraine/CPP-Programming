@@ -14,7 +14,7 @@ class List {
     virtual int removeAt(int pos) = 0;
     virtual void removeAll(int num) = 0;
 
-    virtual void get() = 0;
+    virtual int get(int pos) = 0;
     virtual void flip() = 0;
     virtual void print() = 0;
 

@@ -17,6 +17,35 @@ int main(){
             cin >> num;
             list->addNum(num);
             break;
+        case 'h':
+            cin >> num;
+            list->addHead(num);
+            break;
+        case 't':
+            cin >> num;
+            list->addTail(num);
+            break;
+        case '@':
+            cin >> num;
+            cin >> pos;
+            list->addAt(num, pos);
+            break;
+        case 'r':
+            cin >> num;
+            cout << "Removed " << num << " at position " << list->remove(num) << endl;
+            break;
+        case 'A':
+            cin >> pos;
+            cout << "Remove element: " << list->removeAt(pos) << endl;
+            break;
+        case 'R':
+            cin >> num;
+            list->removeAll(num);
+            break;
+        case 'g':
+            cin >> pos;
+            cout << "Element: " << list->get(pos) << endl;
+            break;
         case 'p':
             list->print();
             break;    
