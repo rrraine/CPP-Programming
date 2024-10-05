@@ -6,10 +6,11 @@
             "command": "C:\\msys64\\ucrt64\\bin\\gcc.exe",
             "args": [
                 "-fdiagnostics-color=always",
+                "-Wall",
                 "-g",
-                "${file}",
+                "${fileDirname}\\**.c",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\bin\\main.exe"
             ],
             "options": {
                 "cwd": "${fileDirname}"
