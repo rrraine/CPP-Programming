@@ -235,7 +235,7 @@ class LinkedList : public List{
             while (curr){
                 cout << curr->data;
                 if (curr != tail){
-                    cout << " -> ";
+                    cout << " <-> ";
                 } else {
                     cout << endl;
                     break;
