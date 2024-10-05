@@ -164,8 +164,52 @@ class LinkedList : public List{
         
     }
 
-    void removeAll(int num) {
+    int removeAll(int num) {
+         int count = 0;
+        if (!head){
+            return count;
+        }
+       
+        node* temp = NULL;
+        node* curr = head;
 
+        if (head->data == num){
+            temp = head;
+            head = head->next;
+            delete temp;
+            size--;
+            count++;
+        }
+
+        if (size == 0){
+            tail = NULL;
+            return count;
+        }
+
+        
+        while (curr != NULL && curr->next != NULL){
+            if (curr->next->data == num){
+                temp = curr->next;
+                curr->next = curr->next->next;
+                if (temp == tail){
+                    tail = curr;
+                    tail->next = NULL;
+                } 
+                delete temp;
+                size--;
+                count++;
+
+                if (size == 0){
+                    head = NULL;
+                    tail = NULL;
+                    return count;
+                }
+            } else {
+                curr = curr->next;
+            }
+            
+        }
+        return count;
     }
 
     int get(int pos){

@@ -40,7 +40,7 @@ int main(){
             break;
         case 'R':
             cin >> num;
-            list->removeAll(num);
+            cout << "Removed items: " << list->removeAll(num) << endl;
             break;
         case 'g':
             cin >> pos;

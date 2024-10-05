@@ -12,7 +12,7 @@ class List {
 
     virtual int remove(int num) = 0;
     virtual int removeAt(int pos) = 0;
-    virtual void removeAll(int num) = 0;
+    virtual int removeAll(int num) = 0;
 
     virtual int get(int pos) = 0;
     virtual void flip() = 0;
