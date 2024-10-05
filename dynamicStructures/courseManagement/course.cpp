@@ -32,15 +32,13 @@ class Course {
 
     void add(Student* s){
         addSize();
-        
-
         student[size++] = s;
 
     }
 
     void addByName(Student* s){
      
-            addSize();
+        addSize();
 
         for (int i = 0; i < size; i++){
             if (student[i]->name.compare(s->name) > 0){
