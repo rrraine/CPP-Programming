@@ -43,15 +43,13 @@ class LinkedList : public List{
     }
 
     void addNum(int num) {
+        node* n = new node;
+        n->data = num;
+
         if (!head){
-            node* n = new node;
-            n->data = num;
+            n->prev = NULL;
             head = tail = n;
-            head->prev = NULL;
-            tail->next = NULL;
         } else {
-            node* n = new node;
-            n->data = num;
             tail->next = n;
             n->prev = tail;
             tail = n;
@@ -88,7 +86,7 @@ class LinkedList : public List{
             return;
         }
 
-        if (pos > size){
+        if (pos == size + 1){
             addTail(num);
             return;
         }
@@ -203,65 +201,56 @@ class LinkedList : public List{
 
     }
      
-    int removeAll(int num) {
-
+    int removeAll(int num) {    
+        return 0;
     }
 
     // only reassign pointers
     int retain(int num) {
-        
+        return 0;
     }
 
     // remove all elements outside the range
     int corner(int left, int right) {
-
+        return 0;
     }
      
 
     int get(int pos) { // compare which is faster: from head or from tail
 
+        int mid ;
+
     }
-     
     void print() {
-        cout << "Size: " << size << endl;
-
-        if (size == 0){
-            cout << "Empty list!" << endl;
-            return;
-        } 
-
-        node* curr = NULL;
-
-        cout << "From head: ";
-
-        while (curr){
-            cout << curr->data;
-
-            if (curr != tail){
-                cout << " <-> ";
+            node* curr;
+            if (size == 0) {
+                cout << "Empty" << endl;
             } else {
-                cout << endl;
-                break;
+                cout << "From HEAD: ";
+                curr = head;
+                while (true) {
+                    cout << curr->data;
+                    if (curr != tail) {
+                        cout << " -> ";
+                    } else {
+                        cout << endl;
+                        break;
+                    }
+                    curr = curr->next;
+                }
+                cout << "From TAIL: ";
+                curr = tail;
+                while (true) {
+                    cout << curr->data;
+                    if (curr != head) {
+                        cout << " <- ";
+                    } else {
+                        cout << endl;
+                        break;
+                    }
+                    curr = curr->prev;
+                }
             }
-            curr = curr->next;
         }
-
-        curr = tail;
-        cout << "From tail: ";
-        while(curr){
-            cout << curr->data;
-
-            if (curr != head){
-                cout << " <-> ";
-            } else {
-                cout << endl;
-                break;
-            }
-            curr = curr->prev;
-        }
-
-        
-        return;    
-    }
- 
+    
 };
