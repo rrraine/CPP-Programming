@@ -20,8 +20,18 @@ class LinkedList : public List{
         size++;
     }
 
-    void removeNode(node* curr){
-
+    int removeNode(node* curr){
+        int elem = curr->data;
+        
+        if (curr->prev != NULL){
+            curr->prev->next = curr->next;
+        }
+        
+        if (curr->next != NULL) {
+            curr->next->prev = curr->prev;
+        }
+        delete curr;
+        return elem;
     }
 
     public:
@@ -127,15 +137,69 @@ class LinkedList : public List{
                     head = NULL;
                     tail = NULL;
                 }
+                return i;
             }
             i++;
             curr = curr->next;
         }
+        return -1;
         
     }
      
-    // use removeNode 
+    // use removeNode & return the removed element
     int removeAt(int pos) {
+       
+        int removedElement;
+        node* temp = NULL;
+
+        if (pos == 1){
+            temp = head;
+            //removedElement = temp->data;
+            head = temp->next;
+            if (head != NULL){
+                head->prev = NULL;
+            } else {
+                tail = NULL;
+            }
+
+           // delete temp;
+            size--;
+            return removeNode(temp);
+        }
+
+        if (pos == size){
+            temp = tail;
+           // removedElement = temp->data;
+            tail = temp->prev;
+            
+            if (tail != NULL){
+                tail->next = NULL;
+            } else {
+                head = NULL;
+            }
+
+            //delete temp;
+            size--;
+            return removeNode(temp);
+        }
+
+        node* curr = head;
+
+        if (pos <= size / 2){
+            curr = head;
+            for (int i = 1; i < pos; i++){
+                curr = curr->next;
+            }
+        } else {
+            curr = tail;
+            for (int i = size; i > pos; i--){
+                curr = curr->prev;
+            }
+        }
+
+        size--;
+        //removedElement = curr->next->data;
+        return removeNode(curr);;
 
     }
      
@@ -161,31 +225,43 @@ class LinkedList : public List{
     void print() {
         cout << "Size: " << size << endl;
 
-        node* curr = head;
+        if (size == 0){
+            cout << "Empty list!" << endl;
+            return;
+        } 
+
+        node* curr = NULL;
 
         cout << "From head: ";
-        while(curr){
+
+        while (curr){
             cout << curr->data;
+
             if (curr != tail){
                 cout << " <-> ";
             } else {
                 cout << endl;
+                break;
             }
             curr = curr->next;
         }
 
-        cout << "From tail: ";
         curr = tail;
-        while (curr){
+        cout << "From tail: ";
+        while(curr){
             cout << curr->data;
+
             if (curr != head){
                 cout << " <-> ";
             } else {
                 cout << endl;
+                break;
             }
             curr = curr->prev;
-         }
-        return;
+        }
+
+        
+        return;    
     }
  
 };
