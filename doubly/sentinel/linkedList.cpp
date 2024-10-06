@@ -9,7 +9,7 @@ class LinkedList : public List {
     node* head;
     node* tail;
 
-    node addBetween (node* curr, node* prev, int num){
+    void addBetween (node* curr, node* prev, int num){
         node* n = new node;
         n->data = num;
         n->next = curr;
@@ -17,6 +17,17 @@ class LinkedList : public List {
         prev->next = n;
         curr->prev = n;
         size++;
+    }
+
+    int removeNode(node* curr){
+        int removeElement = curr->data;
+        
+        curr->prev->next = curr->next;
+        curr->next->prev = curr->prev;
+        delete curr;
+        size--;
+        
+        return removeElement;
     }
 
     public:
@@ -27,7 +38,19 @@ class LinkedList : public List {
         head->next = tail;
         tail->prev = head;
         size = 0;
+    }
 
+    ~LinkedList(){
+        node* curr = head->next;
+        while(curr != tail){
+            node* temp = curr;
+            curr = curr->next;
+            delete temp;
+            if (curr->next == tail){
+                delete curr;
+            }
+        }
+        size == 0;
     }
 
     void addNum(int num) {
@@ -116,6 +139,17 @@ class LinkedList : public List {
         if (size == 0){
             return -1;
         }
+
+        int elem;
+
+        node* curr = head->next;
+
+        for (int i = 1; i < pos; i++){
+            curr = curr->next;
+        }
+
+        return removeNode(curr);
+
     } 
     
     
@@ -141,36 +175,33 @@ class LinkedList : public List {
     void print() {
         cout << "Size: " << size << endl;
 
-        if (size == 0){
+        if (size == 0) {
             cout << "Empty" << endl;
             return;
         } else {
-            node* curr = head->next;
+            node* curr = head->next; 
             cout << "From HEAD: ";
 
-            while (curr != tail){
-                cout << curr->data;
-                if (curr != tail->prev){
+            while (curr != tail) { 
+                cout << curr->data; 
+                curr = curr->next; 
+                if (curr != tail) { 
                     cout << " <-> ";
-                } else {
-                    cout << endl;
-                    break;
                 }
-                curr = curr->next;
             }
+            cout << endl; 
 
-            curr = tail->prev;
+            curr = tail->prev; 
             cout << "From TAIL: ";
-            while(curr != head){
-                cout << curr->data;
-                if (curr != head->next){
+
+            while (curr != head) { 
+                cout << curr->data; 
+                curr = curr->prev; 
+                if (curr != head) { 
                     cout << " <-> ";
-                } else {
-                    cout << endl;
-                    break;
                 }
-                curr = curr->prev;
             }
+            cout << endl; // End line after printing from TAIL
         }
     }
 
