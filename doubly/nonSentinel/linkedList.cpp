@@ -20,13 +20,17 @@ class LinkedList : public List{
         size++;
     }
 
-    int removeNode(node* curr){
+    int removeNode(node* curr){ // return the removed element
         int elem = curr->data;
         
-        if (curr->prev != NULL){
+        // always check if the previous node is not null
+        // if not, assign the next node to the previous node
+        if (curr->prev != NULL){ 
             curr->prev->next = curr->next;
         }
         
+        // always check if the next node is not null
+        // if not, assign the previous next node to the next node
         if (curr->next != NULL) {
             curr->next->prev = curr->prev;
         }
@@ -40,6 +44,15 @@ class LinkedList : public List{
         size = 0;
         head = NULL;
         tail = NULL;
+    }
+
+    ~LinkedList(){
+        node* curr = head;
+        while(curr){
+            node* temp = curr;
+            curr = curr->next;
+            delete temp;
+        }
     }
 
     void addNum(int num) {
@@ -167,7 +180,7 @@ class LinkedList : public List{
 
         if (pos == size){
             temp = tail;
-           // removedElement = temp->data;
+          
             tail = temp->prev;
             
             if (tail != NULL){
@@ -176,7 +189,7 @@ class LinkedList : public List{
                 head = NULL;
             }
 
-            //delete temp;
+           
             size--;
             return removeNode(temp);
         }
@@ -242,7 +255,7 @@ class LinkedList : public List{
 
                 curr = curr->next; // Move to the next node before deleting 
                 // ^^(this is where if head is removed, we still have a new head)
-                
+
                 delete temp;
                 size--;
                 count++;
