@@ -154,21 +154,41 @@ class LinkedList : public List {
     
     
     int removeAll(int num) {
+        int count = 0;
 
+        if (size == 0){
+            return count;
+        }
+
+        node* curr = head->next;
+
+        while (curr != tail){
+            if (curr->data == num){
+                node* temp = curr;
+                curr->prev->next = curr->next;
+                curr->next->prev = curr->prev;
+                delete temp;
+                size--;
+                count++;
+            } else {
+                curr = curr->next;
+            }
+        }
+        return count;
     }
 
     //only reassign pointers
     int retain(int num) {
-
+        return 0;
     } 
 
     //remove all elements outside the range
     int corner(int left, int right) {
-
+        return 0;
     } 
 
     int get(int pos) {
-
+        return 0;
     } 
     
     //compare which is faster: from head or from tail
