@@ -61,6 +61,10 @@ int main(){
             break;    
          case 'x':
             cout << "Exiting..." << endl;
+            delete list;   
+            // if we created the list using new keyword, using delete keyword to free the memory will automatically
+            // invoke the deconstructor of the class & free all allocated memory for the nodes in the linked list.
+            cout << "deleting the list now..." << endl;
             return 0;
         default:
             cout << "Invalid operation!" << endl;

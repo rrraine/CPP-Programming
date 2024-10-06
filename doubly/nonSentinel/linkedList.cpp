@@ -207,28 +207,29 @@ class LinkedList : public List{
         node* temp = NULL;
         node* curr = head;
 
-        if (head->data == num){
-            temp = head;
+        if (head->data == num){           // check if head is the element to be removed
+
+            temp = head;                  // store head in temp and assign head to the next node
             head = curr->next;
-            if (head != NULL){
+            if (head != NULL){            // check if head is not NULL, assign prev to NULL
                 head->prev = NULL;
-            } else {
+            } else {                       // else assign tail to NULL
                 tail = NULL;
             }
-            delete temp;
+            delete temp;                   // delete the temp node
             size--;
             count++;
             curr = head;
         }
 
-        if (size == 0){
-            tail = NULL;
+        if (size == 0){                     // check if size is 0, assign head and tail to NULL
+            tail = NULL;                    // return the current count 
             return count;
         }
 
         
-
-        while (curr != NULL) {
+    // still asign head to curr even if head is removed earlier as it contains new element to be checked
+        while (curr != NULL) {                
             if (curr->data == num) {
                 node* temp = curr;
                 curr->prev->next = curr->next; // Link previous to next
@@ -239,7 +240,9 @@ class LinkedList : public List{
                     tail = curr->prev; // Update tail if we're removing the last node
                 }
 
-                curr = curr->next; // Move to the next node before deleting
+                curr = curr->next; // Move to the next node before deleting 
+                // ^^(this is where if head is removed, we still have a new head)
+                
                 delete temp;
                 size--;
                 count++;
