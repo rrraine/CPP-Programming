@@ -9,7 +9,13 @@ class LinkedList : public List{
     node* head;
     node* tail;
 
-    
+    void addBetween(node* curr, node* next, int num){
+        node* n = new node;
+        n->data = num;
+        n->next = next;
+        curr->next = n;
+        size++;
+    }
     public:
 
     void addNum(int num) {
