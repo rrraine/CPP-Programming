@@ -258,40 +258,43 @@ class LinkedList : public List{
 
         while (curr){
 
-            if (curr->data < num){
+            if (curr->data < num){                  // check if elem is less than num
                 
-                if (size == 1){
+                if (size == 1){                     // if only one element, set them to NULL
                     head = tail = NULL;
                 }
 
-                node* nextNode = curr->next;
-                if (curr == head){
-                    head = nextNode;
-                    if (head){
-                        head->prev = NULL;
-                    } else {
+                node* nextNode = curr->next;        // create new node to store the next node
+                if (curr == head){                  // if we'll remove the head
+                    head = nextNode;                // assign head to the next node
+
+                    if (head){                      // if head is not NULL, assign prev to NULL
+                        head->prev = NULL; 
+                    } else {                        // if head is NULL, assign tail to NULL
                         tail = NULL;
                     }
-                    curr = head;
-                } else if (curr == tail){
-                    tail = tail->prev;
-                    if (tail){
+                    curr = head; 
+                } else if (curr == tail){           // if we'll remove the tail
+                
+                    tail = tail->prev;              // assign tail to the previous node
+
+                    if (tail){                      // if tail is not NULL, assign next to NULL
                         tail->next = NULL;
-                    } else {
-                        head = NULL;
+                    } else {                        // if tail is NULL, assign head to NULL
+                        head = NULL;                // assign head to NULL
                     }
                     curr = NULL;
-                } else {
-                    curr->prev->next = curr->next;
-                    curr->next->prev = curr->prev;
+                } else {                             // if we'll remove a middle node
+                    curr->prev->next = curr->next;   // assign previous node next to the next node
+                    curr->next->prev = curr->prev;   // assign next node prev to the previous node
                 }
-                count++;
-                size--;
-                delete curr;
-                curr = nextNode;
+                count++;                        // increment count
+                size--;                         // decrement size    
+                delete curr;                    // delete the current node, to prevent memory leak
+                curr = nextNode;                // assign current node to the next node
 
             } else {
-                curr = curr->next;
+                curr = curr->next;              // skip the current node if not less than num
             }
         }
         return count;
