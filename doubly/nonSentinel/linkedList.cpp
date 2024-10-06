@@ -250,9 +250,51 @@ class LinkedList : public List{
         return count;
     }
 
-    // only reassign pointers
+    // only reassign pointers, retain greater or equal to num
+    // return no. of elements removed
     int retain(int num) {
-        return 0;
+        int count = 0;
+        node* curr = head;
+
+        while (curr){
+
+            if (curr->data < num){
+                
+                if (size == 1){
+                    head = tail = NULL;
+                }
+
+                node* nextNode = curr->next;
+                if (curr == head){
+                    head = nextNode;
+                    if (head){
+                        head->prev = NULL;
+                    } else {
+                        tail = NULL;
+                    }
+                    curr = head;
+                } else if (curr == tail){
+                    tail = tail->prev;
+                    if (tail){
+                        tail->next = NULL;
+                    } else {
+                        head = NULL;
+                    }
+                    curr = NULL;
+                } else {
+                    curr->prev->next = curr->next;
+                    curr->next->prev = curr->prev;
+                }
+                count++;
+                size--;
+                delete curr;
+                curr = nextNode;
+
+            } else {
+                curr = curr->next;
+            }
+        }
+        return count;
     }
 
 
@@ -324,11 +366,26 @@ class LinkedList : public List{
      
 
     int get(int pos) { // compare which is faster: from head or from tail
+       
+        int count = 0;
 
-        int count;
-
-        if (pos);
-
+        if (pos <= (size + 1) / 2){
+            node* curr = head;
+            for (int i = 1; i < pos; i++){
+                curr = curr->next;
+                count++;
+            }
+            cout << "From HEAD: " << count << endl;
+            return curr->data;
+        } else {
+            node* curr = tail;
+            for (int i = size; i > pos; i--){
+                curr = curr->prev;
+                count++;
+            }
+            cout << "From TAIL " << count << endl;
+            return curr->data;
+        }
     }
     void print() {
             node* curr;

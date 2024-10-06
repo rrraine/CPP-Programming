@@ -5,7 +5,7 @@ using namespace std;
 int main(){
     List* list = new LinkedList();
     char op;
-    int num, pos;
+    int num, pos, elem;
 
     do {
         cout << "Enter op: ";
@@ -44,7 +44,12 @@ int main(){
             break;
         case 'g':
             cin >> pos;
-            cout << "Element: " << list->get(pos) << endl;
+            elem = list->get(pos);
+            cout << "Element: " << elem << endl;
+            break;
+        case 'T':
+            cin >> num;
+            cout << "Removed Element/s: " << list->retain(num) << endl;
             break;
         case 'c':
             int left, right;
