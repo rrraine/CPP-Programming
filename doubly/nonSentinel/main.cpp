@@ -54,7 +54,9 @@ int main(){
         case 'p':
             list->print();
             break;    
-    
+         case 'x':
+            cout << "Exiting..." << endl;
+            return 0;
         default:
             cout << "Invalid operation!" << endl;
             break;
