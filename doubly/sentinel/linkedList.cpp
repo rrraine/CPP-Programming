@@ -20,8 +20,13 @@ class LinkedList : public List {
     }
 
     int removeNode(node* curr){
-        int removeElement = curr->data;
         
+        if (curr == head || curr == tail){
+            cout << "Cannot remove sentinel nodes." << endl;
+            return 0;
+        }
+
+        int removeElement = curr->data;        
         curr->prev->next = curr->next;
         curr->next->prev = curr->prev;
         delete curr;
@@ -186,6 +191,23 @@ class LinkedList : public List {
     } 
 
     int get(int pos) {
+        int count = 0;
+        if (pos <= (size + 1) / 2){
+            node* curr = head->next;
+            for (int i = 1; i < pos; i++){
+                curr = curr->next;
+                count++;
+            }
+            cout << "From head: " << count << endl;
+            return curr->data;
+        } else {
+            node* curr = tail->prev;
+            for (int i = size; i > pos; i--){
+                curr = curr->next;
+                count++;
+            }
+            cout << "From tail: " << count << endl;
+        }
         return 0;
     } 
     
