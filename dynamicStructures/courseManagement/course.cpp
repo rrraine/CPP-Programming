@@ -5,7 +5,10 @@
 
 class Course {
     Student** student;
+    Block** blocked;
     int size, capacity;
+    int blockSize, blockCapacity = 5;
+
     string topic;
 
     void reduce(){
@@ -21,6 +24,19 @@ class Course {
             student = (Student**) realloc (student, capacity*sizeof(Student*));
         }
     }
+
+    void removeShift(int i){
+         for (int j = i; i < size - 1; i++){
+                    student[j] = student[j + 1];
+                }
+    }
+
+    void increaseBlockCapacity(){
+        if (blockSize == blockCapacity){
+            capacity = ceil(blockCapacity * 1.5);
+            blocked = (Block**)realloc(blocked, capacity * sizeof(Block*));
+        }
+    }
     public:
 
     Course(string topic){
@@ -28,6 +44,7 @@ class Course {
         size = 0;
         capacity = 5;
         student = (Student**) calloc(capacity, sizeof(Student*));
+        blocked = (Block**) calloc (blockCapacity, sizeof(Block*));
     }
 
     void add(Student* s){
@@ -94,6 +111,44 @@ class Course {
         return "";
     }
 
+    int removeCheaters(string name) {
+        int count = 0;
+
+        for (int i = 0; i < size; i++){
+            if (name == student[i]->name){
+                // store the student in a temporary variable
+                Student* temp = student[i];
+
+                // shift the student to override the student
+                removeShift(i);
+                
+                // reduced the size
+                size--;
+
+                // check if the size meet the needed condition for resizing
+                reduce();
+                count++; // increment count to track the number of cheaters
+
+                blocked[blockSize++] = new Block(temp->course, temp->year);
+
+                 Student *remove;
+                for (int j = 0; j < size; j++) {
+                    if (student[j]->course == temp->course && student[j]->year == temp->year) {
+                        remove = student[j];
+                        removeShift(j);
+                        size--;
+                        reduceCapacity();
+                        count++;
+                        j--;
+                        free(remove);
+                    }
+                }
+                free(temp);
+                return count
+                
+        }
+    }
+
     void print(){
 
         cout << "Size: " << size << "/" << capacity << endl;
@@ -111,4 +166,13 @@ class Course {
 
 
 
+};
+
+
+class Block{
+    string program;
+    int year;
+
+    // create a contructor to immediately store the details
+    Block(string program, int year) : program(program) , year(year) {};
 };
