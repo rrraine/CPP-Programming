@@ -1,6 +1,6 @@
 #include <iostream>
 #include "linkedList.cpp"
-using namespace std;
+using namespace std; 
 
 int main(){
     List* list = new LinkedList();

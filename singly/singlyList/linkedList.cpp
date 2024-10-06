@@ -9,44 +9,7 @@ class LinkedList : public List{
     node* head;
     node* tail;
 
-    int remEl(int num){
-        node* temp = NULL;
-        int elem;
-        if (head->data == num){
-            temp = head;            
-            elem = temp->data;
-            head = head->next;
-            size--;
-            if (size == 0){
-                tail = NULL;
-            }
-            delete temp;
-            return elem;
-        }
-
-        node* curr = head;
-        while (curr != NULL){
-            if (curr->next->data == num){
-                temp = curr->next;
-                elem = temp->data;
-                if (curr->next == tail){
-                    tail = curr;
-                    tail->next = NULL;
-                } else {
-                    curr->next = curr->next->next;
-                }
-                size--;
-                delete temp;
-                if (size == 0){
-                    head = NULL;
-                    tail = NULL;
-                }
-                return elem;
-            }
-            curr= curr->next;
-        }
-        return -1;
-    }
+    
     public:
 
     void addNum(int num) {
@@ -152,15 +115,21 @@ class LinkedList : public List{
         node* curr = head;
 
         if (pos == 1){
-            return remEl(head->data);
+            temp = head;
+            head = head->next;
+            elem = temp->data;
+            delete temp;
+            size--;
+            return elem;
         }
         
         for (int i = 1; i < pos - 1; i++){
             curr = curr->next;
         }
 
+        curr->next = curr->next->next;
         elem = curr->next->data;
-        return remEl(elem);
+        return elem;
         
     }
 
@@ -248,3 +217,46 @@ class LinkedList : public List{
     }
     
 };
+
+
+/*
+
+int remEl(int num){
+        node* temp = NULL;
+        int elem;
+        if (head->data == num){
+            temp = head;            
+            elem = temp->data;
+            head = head->next;
+            size--;
+            if (size == 0){
+                tail = NULL;
+            }
+            delete temp;
+            return elem;
+        }
+
+        node* curr = head;
+        while (curr != NULL){
+            if (curr->next->data == num){
+                temp = curr->next;
+                elem = temp->data;
+                if (curr->next == tail){
+                    tail = curr;
+                    tail->next = NULL;
+                } else {
+                    curr->next = curr->next->next;
+                }
+                size--;
+                delete temp;
+                if (size == 0){
+                    head = NULL;
+                    tail = NULL;
+                }
+                return elem;
+            }
+            curr= curr->next;
+        }
+        return -1;
+    }
+ */
