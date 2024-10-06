@@ -46,6 +46,11 @@ int main(){
             cin >> pos;
             cout << "Element: " << list->get(pos) << endl;
             break;
+        case 'c':
+            int left, right;
+            cin >> left >> right;
+            cout << "Removed Element/s: " << list->corner(left, right) << endl;
+            break;
         case 'p':
             list->print();
             break;    

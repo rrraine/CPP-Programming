@@ -202,7 +202,52 @@ class LinkedList : public List{
     }
      
     int removeAll(int num) {    
-        return 0;
+        int count = 0;
+        
+        node* temp = NULL;
+        node* curr = head;
+
+        if (head->data == num){
+            temp = head;
+            head = curr->next;
+            if (head != NULL){
+                head->prev = NULL;
+            } else {
+                tail = NULL;
+            }
+            delete temp;
+            size--;
+            count++;
+            curr = head;
+        }
+
+        if (size == 0){
+            tail = NULL;
+            return count;
+        }
+
+        
+
+        while (curr != NULL) {
+            if (curr->data == num) {
+                node* temp = curr;
+                curr->prev->next = curr->next; // Link previous to next
+
+                if (curr->next != NULL) {
+                    curr->next->prev = curr->prev; // Link next back to previous
+                } else {
+                    tail = curr->prev; // Update tail if we're removing the last node
+                }
+
+                curr = curr->next; // Move to the next node before deleting
+                delete temp;
+                size--;
+                count++;
+            } else {
+                curr = curr->next; // Move to the next node
+            }
+        }
+        return count;
     }
 
     // only reassign pointers
@@ -210,15 +255,79 @@ class LinkedList : public List{
         return 0;
     }
 
-    // remove all elements outside the range
+
+    // remove all elements between left and right elements
     int corner(int left, int right) {
-        return 0;
+
+        // check if Left and Right are valid
+        if (left < 0 || left > size || right < 0 || right > size){
+            return -1;
+        }
+
+        // check if both left and right == 0, you have to remove all elements
+
+         int removedElements = size - (left + right);
+
+        if (left == 0 && right == 0){
+            head = NULL;
+            tail = NULL;
+            removedElements = size;
+            size = 0;          
+        }
+
+       
+        size = left + right;
+
+        if (left == 0){
+            // if left is 0, move head to start of right position
+            node* currRight = tail;
+            for (int i = 1; i < right; i++){
+                currRight = currRight->prev;
+            }
+            head = currRight;
+
+        } else if (right == 0){
+            // if right is 0, move tail to the end of left position
+            node* currLeft = head;
+            for (int i = 1; i < left; i++){
+                currLeft = currLeft->next;
+            }
+            tail = currLeft;
+        } else {
+            // if both left and right are not 0
+            // after moving two currNodes to the left and right positions
+            // connect them after
+
+            node* currRight = tail;
+            for (int i = 1; i < right; i++){
+                currRight = currRight->prev;
+            }
+          
+
+            node* currLeft = head;
+            for (int i = 1; i < left; i++){
+                currLeft = currLeft->next;
+            }
+           
+            currLeft->next = currRight;
+
+            if (currRight != NULL){
+                currRight->prev = currLeft;
+            } else {
+                tail = currLeft;
+            }
+
+            head = (left > 0) ? head : currRight;
+        }
+        return removedElements;
     }
      
 
     int get(int pos) { // compare which is faster: from head or from tail
 
-        int mid ;
+        int count;
+
+        if (pos);
 
     }
     void print() {
