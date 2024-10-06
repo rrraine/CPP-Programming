@@ -105,6 +105,9 @@ class LinkedList {
         return p;
     }
 
+    // approach this problem by thinking of the first person that has only one request
+    // think of how to check if the person has only one request
+    // immediately remove the person from the list 
     Person* fastLane(){
         Person* p = NULL;
         node* curr = head->next;
