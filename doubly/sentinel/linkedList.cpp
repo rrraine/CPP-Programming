@@ -90,12 +90,32 @@ class LinkedList : public List {
 
     //use removeNode
     int remove(int num) {
+        if (size == 0){
+            return -1;
+        }
 
+        node* curr = head->next;
+        int i = 1;
+        while(curr !=tail){
+            if (curr->data == num){
+                node* temp = curr;
+                curr->prev->next = curr->next;
+                curr->next->prev = curr->prev;
+                delete temp;
+                size--;
+                return i;
+            }
+            i++;
+            curr = curr->next;
+        }
+        return -1;
     } 
     
-    //use removeNode 
+    //use removeNode && return the removed Element
     int removeAt(int pos) {
-
+        if (size == 0){
+            return -1;
+        }
     } 
     
     
@@ -130,19 +150,20 @@ class LinkedList : public List {
 
             while (curr != tail){
                 cout << curr->data;
-                curr = curr->next;
-                if (curr != tail){
+                if (curr != tail->prev){
                     cout << " <-> ";
-                } 
-                cout << endl;
-                
+                } else {
+                    cout << endl;
+                    break;
+                }
+                curr = curr->next;
             }
 
             curr = tail->prev;
             cout << "From TAIL: ";
             while(curr != head){
                 cout << curr->data;
-                if (curr != head){
+                if (curr != head->next){
                     cout << " <-> ";
                 } else {
                     cout << endl;
