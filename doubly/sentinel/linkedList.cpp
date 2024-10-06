@@ -42,15 +42,12 @@ class LinkedList : public List {
 
     ~LinkedList(){
         node* curr = head->next;
-        while(curr != tail){
+        while(curr){
             node* temp = curr;
             curr = curr->next;
             delete temp;
-            if (curr->next == tail){
-                delete curr;
-            }
         }
-        size == 0;
+        size = 0;
     }
 
     void addNum(int num) {
@@ -61,7 +58,7 @@ class LinkedList : public List {
             head->next = n;
             n->prev = head;
             n->next = tail;
-            
+            tail->prev = n; 
         } else {
             n->next = tail;
             n->prev = tail->prev;
@@ -77,8 +74,9 @@ class LinkedList : public List {
         n->data = num;
         n->next = head->next;
         n->prev = head;
-        head->next = n;
         head->next->prev = n;
+        head->next = n;
+        
     }
 
     void addTail(int num) {
