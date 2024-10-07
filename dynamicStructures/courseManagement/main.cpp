@@ -58,6 +58,11 @@ int main(){
                 } else {
                     cout << "No student removed." << endl;
                 }
+            case 'c':
+                cout << "Who cheated?: ";
+                cin >> name;
+                cout << "Remove " << s->removeCheaters(name) << " student/s" << endl;
+                break;
             case 'p':
                 s->print();
                 break;
