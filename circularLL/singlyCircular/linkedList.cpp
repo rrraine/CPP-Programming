@@ -46,6 +46,52 @@ class Linkedlist {
         tail = head;
         head = head->next;    
     }
+
+    int remove(int num){
+        int i = 1;
+        if(!head){
+            return -1;
+        }
+
+        node* temp = NULL;
+        node* curr = head;
+        node* prev = tail;
+
+        if (head->data == num){
+            temp = head;
+        
+            if(head==tail){
+                head = tail = nullptr;
+            }else{
+                head = head->next;
+                tail->next = head;
+            }
+            delete temp;
+            return i;
+        }
+
+        i = 2;
+
+
+        do{
+            prev = curr;
+            curr = curr->next;
+
+            if (curr->data == num){
+                temp = curr;
+                prev->next = curr->next;
+                
+                if (curr == tail){
+                    tail = prev;
+                } 
+                delete temp;
+                size--;
+                return i;
+            }
+            i++;
+        }while(curr != head);
+
+    }
     void print(){
         node* curr = head;
 

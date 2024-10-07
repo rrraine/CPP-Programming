@@ -22,7 +22,7 @@ int main(){
             break;
         case 'R':
             cin >> num;
-            list->remove(int num);
+            list->remove(num);
             break;
         case 'p':
             list->print();
