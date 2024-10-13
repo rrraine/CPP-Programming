@@ -53,4 +53,19 @@ class Stack{
     bool isFull(){
         return false;
     }
+
+    void printStack(){
+        if (isEmpty()){
+            cout << "Stack is empty" << endl;
+
+        }
+
+        node* curr = head;
+        cout << "Stack: ";
+        while (head != nullptr){
+            cout << curr->data << " ";
+            curr = curr->next;
+        }
+
+    }
 };

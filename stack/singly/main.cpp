@@ -21,6 +21,9 @@ int main(){
             case 't':
                 stack.peek();
                 break;
+            case 'P':
+                stack.printStack();
+                break;
             case 'x':
                 cout << "Exiting" << endl;
                 break;
