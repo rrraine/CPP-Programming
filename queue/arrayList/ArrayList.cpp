@@ -27,8 +27,8 @@ class ArrayList : public arrayList {
         free(array);
     }
     void deduceCapacity(){ // something wrong with deduceCapacity
-        if (size <= (capacity * 2.0/3.0)){
-            capacity = ceil(capacity * 0.80);
+        if (size == (capacity * 2.0/3.0)){
+            capacity = ceil(capacity * 0.75);
             if (capacity < 5){
                 capacity = 5;
             }
@@ -58,7 +58,7 @@ class ArrayList : public arrayList {
             array[i] = array[i + 1];
         }
         size--;
-        // deduceCapacity();
+        deduceCapacity();
         return temp;
     }
 
