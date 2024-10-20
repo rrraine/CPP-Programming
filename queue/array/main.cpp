@@ -1,10 +1,10 @@
 #include <iostream>
-#include "QueueArrayList.cpp"
+#include "QueueLinkedList.cpp"
 using namespace std;
 
 int main(){
 
-    QueueArrayList queue = QueueArrayList();
+    QueueLinkedList queue = QueueLinkedList();
     int num; char op;
 
     do {
@@ -12,7 +12,7 @@ int main(){
         cin >> op;
 
         switch(op){
-            case 'e':
+            case 'e': 
                 cout << "Enter num: ";
                 cin >> num;
                 queue.enqueue(num);

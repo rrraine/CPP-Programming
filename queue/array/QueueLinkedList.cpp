@@ -1,27 +1,24 @@
 #include <iostream>
+#include "linkedList.cpp"
 #include "queue.hpp"
-#include "ArrayList.cpp"
 using namespace std;
 
-class QueueArrayList : public Queue{
+class QueueLinkedList : public Queue{
 
-    ArrayList list;
- 
+    LinkedList list;
+
     public:
 
-    QueueArrayList() {
-        list = ArrayList();
+    QueueLinkedList() {
+        list = LinkedList();
     }
 
-    ~QueueArrayList(){
-        free(&list);
-    }
     void enqueue(int num){
         list.addLast(num);
     }
 
     int dequeue(){
-        return list.removeFirst();
+        return list.removeHead();
     }
 
     int front(){
@@ -29,7 +26,7 @@ class QueueArrayList : public Queue{
     }
 
     int rear(){
-        return list.get(list.getSize() - 1);
+        return list.get(list.getSize() - 1);    
     }
 
     int getSize(){
@@ -37,12 +34,13 @@ class QueueArrayList : public Queue{
     }
 
     bool isEmpty(){
-        return list.isEmpty();
+        return list.getSize() == 0;
     }
 
     void printQueue(){
-        cout << "Queue: ";
-        list.printList();
+        return list.printList();
     }
+
+    //QueueLinkedList() : list() {}
 
 };
