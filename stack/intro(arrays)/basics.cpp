@@ -105,6 +105,8 @@ class Stack{
 
         cout << endl;
     }
+
+    // int sum(); // use for-loop to sum
 };
 
 int main(){
