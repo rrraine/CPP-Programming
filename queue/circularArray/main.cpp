@@ -38,6 +38,9 @@ class Array : public List {
         size++;
     }
 
+    ~Array(){
+        delete[] arr;
+    }
     int removeFirst() {
         if (isEmpty()){
             cout << "Array is empty" << endl;
@@ -123,6 +126,9 @@ class QueueCircularArray : public Queue{
         array = Array();
     }
 
+    ~QueueCircularArray(){
+        // delete array;
+    }
     void enqueue(int num){
         array.addLast(num);
     }
