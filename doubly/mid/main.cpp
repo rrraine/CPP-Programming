@@ -108,12 +108,37 @@ class LinkedList{
         delete tail;
         size = 0;
     }
+
+    int getMiddle(){ // without using size; works both singly & doubly
+
+        if (head == tail){
+            return -1;
+        }
+
+        node* last = NULL; // for even cases
+        node* middle = head->next; // for odd cases
+        node* fast = head->next; // reach tails first
+
+        while (fast != tail && fast->next != tail){
+            last = middle;
+            middle = middle->next;
+            fast = fast->next->next;
+        }
+
+        if (fast == tail){
+            return (last->data + middle->data) / 2;
+        } else {
+            return middle->data;
+        }
+
+    }
+
     void print(){
         if (head == NULL && tail == NULL){
             cout << "No list created." << endl;
             return;
         }
-        
+
         cout << "Size: " << size << endl;
         if (size == 0){
             cout << "Empty list" << endl;
