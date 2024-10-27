@@ -14,6 +14,12 @@ class Binary {
     virtual void remove(node* p) = 0;
     //virtual void attach(node* p, BinaryTree t1, BinaryTree t2) = 0;
 
+    virtual int getDepth(node *p) = 0;
+    virtual int getHeight(node* p) = 0;
+
+    virtual bool isDescendant(node* root, node* target) = 0;
+    virtual bool isEdge(node* p, node* q) = 0;
+
     virtual int getSize() = 0;
     virtual void print(node* p) = 0;
     virtual node* getRoot() = 0;

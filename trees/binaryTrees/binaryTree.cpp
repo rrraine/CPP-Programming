@@ -153,6 +153,61 @@ class BinaryTree : public Binary{
     }
     */
 
+   // distance from the root to the node
+    int getDepth(node *p){
+        if (p == NULL){ // root
+            return 0;
+        }
+
+        int depth = 0;
+        while (p != root){
+            p = p->parent;
+            depth++;
+        }
+        return depth;
+    }
+    
+    // distance from the node to the deepest leaf
+    int getHeight(node* p){
+        if (p == NULL){ // root case
+            return 0;
+        }
+
+        int leftHeight = getHeight(p->left);
+        int rightHeight = getHeight(p->right);
+
+        return max(leftHeight, rightHeight) + 1;
+    }
+    
+
+    bool isDescendant(node* root, node* target){
+        if (root == NULL || target == NULL){
+            return false;
+        }
+        while (target != NULL){
+            if (target == root){
+                return true;
+            }
+            target = target->parent;
+        }
+        return false;
+    }
+    
+    bool isEdge(node* p, node* q){
+        if (p == NULL || q == NULL){
+            return false;
+        }
+
+        return (p->left == q || p->right == q || q->left == p || q->right == p);
+    }
+    
+
+
+
+
+
+
+
     // Prints the tree in inorder traversal
      void print(node* n){
         if (root == NULL){
