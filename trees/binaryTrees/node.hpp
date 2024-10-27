@@ -1,8 +1,11 @@
-#include <iostream>
+#ifndef NODE_HPP
+#define NODE_HPP
 
-struct node{
+struct node {
     int data;
     node* left;
     node* right;
     node* parent;
 };
+
+#endif // NODE_HPP
