@@ -9,7 +9,8 @@ int main(){
 
     do {
         cout << "Enter op: ";
-        cin >> op;
+        cin >> op;  
+
 
         switch(op){
             case 'e': 
