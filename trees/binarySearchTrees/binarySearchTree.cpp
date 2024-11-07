@@ -115,9 +115,9 @@ class BinaryTree : public Binary {
         // always search left subtree if data < root->data and viceversa
     }
 
-    int inOrderTraversal(node* root){
+    void inOrderTraversal(node* root){
         if (root == nullptr){
-            return 0;
+            return;
         }
 
         inOrderTraversal(root->left);
@@ -127,19 +127,61 @@ class BinaryTree : public Binary {
     }
 
     void preOrderTraversal(node* root){
+        if (root == nullptr){
+            return;
+        }
+
+        cout << root->data << " ";
+        preOrderTraversal(root->left);
+        preOrderTraversal(root->right);
 
     }
 
     void postOrderTraversal(node* root){
 
+        if (root == nullptr){
+            return;
+        }
+
+        postOrderTraversal(root->left);
+        postOrderTraversal(root->right);
+        cout << root->data << " ";
     }
 
     int minimum(node* root){
+        
+        // base cases: empty or no left child
+        if (root = nullptr){
+            return -1;
+        }
+
+        if (root->left == nullptr){
+            return root->data;
+        }
+
+        while (root->left){
+            root = root->left;
+        }
+        return root->data;
+
 
     }
 
     int maximum(node* root){
+        if (root = nullptr){
+            return -1;
+        }
 
+        // base case: root has no right child but has left child
+        if (root->right = nullptr){
+            return root->data;
+        }
+
+        while (root->right){
+            root = root->right;
+        }
+
+        return root->data;
     }
 
     
