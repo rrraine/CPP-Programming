@@ -71,6 +71,6 @@ int main() {
         }
     } while (op != 'x');
 
-    delete tree;
+    free(tree);
     return 0;
 }

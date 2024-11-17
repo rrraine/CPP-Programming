@@ -1,5 +1,7 @@
 #include <iostream>
+#pragma once
 using namespace std;
+
 struct node{
     int data;
     node* left;
@@ -37,3 +39,5 @@ struct node{
         return 1 + leftCount + rightCount;
     }
 };
+
+
