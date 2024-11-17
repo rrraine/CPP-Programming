@@ -107,7 +107,7 @@ class BinarySearchTree : public Binary {
         return -1;
     }
 
-        void inOrderTraversal(node* root){
+    void inOrderTraversal(node* root){
         if (root == nullptr){
             return;
         }
