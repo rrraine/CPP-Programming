@@ -2,7 +2,7 @@
 
 struct node{
     int data;
-    node* firstChild;
-    node* nextSibling;
-    
+    node* left;
+    node* right;
+    node* parent;
 };
